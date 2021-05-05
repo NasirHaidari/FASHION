@@ -1,9 +1,9 @@
-import * as firebase from 'firebase'
+import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/storage'
 
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: process.env.REACT_APP_apikey,
   authDomain: process.env.REACT_APP_authDomin,
   projectId: process.env.REACT_APP_projectID,
@@ -18,3 +18,4 @@ const db = firebase.firestore()
 const storage = firebase.storage()
 
 export { auth, db, storage }
+export default firebase
