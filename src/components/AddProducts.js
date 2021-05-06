@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { storage, db } from '../config/config'
 
-function AddProducts() {
+const AddProducts = () => {
   const [productName, setProductName] = useState('')
   const [productPrice, setProductPrice] = useState('')
   const [productImage, setProductImage] = useState(null)
@@ -22,9 +22,9 @@ function AddProducts() {
 
   const addProducts = (e) => {
     e.preventDefault()
-    console.log(productName, productImage, productPrice)
+    // console.log(productName, productImage, productPrice)
     const uploadTask = storage
-      .ref(`product-image/${productImage.name}`)
+      .ref(`product-images/${productImage.name}`)
       .put(productImage)
     uploadTask.on(
       'state_changed',
@@ -32,9 +32,7 @@ function AddProducts() {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         console.log(progress)
       },
-      (err) => {
-        setError(err.message)
-      },
+      (err) => setError(err.message),
       () => {
         storage
           .ref('product-images')
@@ -43,9 +41,9 @@ function AddProducts() {
           .then((url) => {
             db.collection('products')
               .add({
-                productName: productName,
-                productPrice: Number(productPrice),
-                productImage: url,
+                ProductName: productName,
+                ProductPrice: Number(productPrice),
+                ProductImage: url,
               })
               .then(() => {
                 setProductName('')
