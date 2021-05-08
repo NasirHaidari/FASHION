@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
-import { storage, db } from '../config/config'
+import { storage, db } from '../firebase/config'
+import logo from '../images/android-chrome-512x512.png'
 
 const AddProducts = () => {
+  const [articleNumber, SetArticleNumber] = useState('')
   const [productName, setProductName] = useState('')
   const [productPrice, setProductPrice] = useState('')
+  const [productDes, setProductDes] = useState('')
   const [productImage, setProductImage] = useState(null)
   const [error, setError] = useState('')
 
-  const types = ['image/png', 'image/jpeg']
+  const types = ['image/png', 'image/jpeg', 'image/webp']
 
   const productImageHandler = (e) => {
     let selectedFile = e.target.files[0]
@@ -22,7 +25,7 @@ const AddProducts = () => {
 
   const addProducts = (e) => {
     e.preventDefault()
-    // console.log(productName, productImage, productPrice)
+    console.log(productName, productImage, productPrice, productDes)
     const uploadTask = storage
       .ref(`product-images/${productImage.name}`)
       .put(productImage)
@@ -41,12 +44,16 @@ const AddProducts = () => {
           .then((url) => {
             db.collection('products')
               .add({
+                ArticleNumber: Number(articleNumber),
                 ProductName: productName,
+                ProductDescription: productDes,
                 ProductPrice: Number(productPrice),
                 ProductImage: url,
               })
               .then(() => {
                 setProductName('')
+                SetArticleNumber('')
+                setProductDes('')
                 setProductPrice('')
                 setProductImage('')
                 setError('')
@@ -61,12 +68,24 @@ const AddProducts = () => {
   return (
     <div className='container'>
       <br />
-      <h2>Add Products</h2>
+      <img src={logo} className='logo' alt='logo' />
+      <h2 className='text-center'>Add Products</h2>
       <form
         action=''
         autoComplete='off'
         className='form-group'
         onSubmit={addProducts}>
+        <br />
+        <label htmlFor='product-ArticleNumber'>Article Number </label>
+        <input
+          type='number'
+          className='form-control'
+          required
+          onChange={(e) => SetArticleNumber(e.target.value)}
+          value={articleNumber}
+        />
+        <br />
+
         <label htmlFor='product-name'>Product Name </label>
         <br />
         <input
@@ -75,6 +94,15 @@ const AddProducts = () => {
           required
           onChange={(e) => setProductName(e.target.value)}
           value={productName}
+        />
+        <label htmlFor='product-des'>Product Description </label>
+        <br />
+        <input
+          type='text'
+          className='form-control'
+          required
+          onChange={(e) => setProductDes(e.target.value)}
+          value={productDes}
         />
 
         <label htmlFor='product-price'>Product Price </label>

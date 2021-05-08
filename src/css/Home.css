@@ -42,3 +42,9 @@
     margin: auto 10px;
     margin-right: 2rem;
 }
+
+.logo {
+    width: 4rem;
+    height: auto;
+    margin: 0.4rem ;
+}
