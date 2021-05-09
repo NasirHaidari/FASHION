@@ -5,6 +5,7 @@ const useProducts = () => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
+    setProducts([])
     const unsubscribe = db.collection('products').onSnapshot((snapshot) => {
       let items = []
       snapshot.forEach((doc) => {

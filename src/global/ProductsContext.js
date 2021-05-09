@@ -7,10 +7,11 @@ export const ProductContextProvider = ({ children }) => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    db.collection('products').onSnapshot((snapshot) => {
+    const sub = db.collection('products').onSnapshot((snapshot) => {
       let items = []
       snapshot.forEach((doc) => {
         items.push({
+          id: doc.id,
           ...doc.data(),
         })
         setProducts(items)
@@ -18,7 +19,7 @@ export const ProductContextProvider = ({ children }) => {
 
       console.log(products)
     })
-    return
+    return sub
     // eslint-disable-next-line
   }, [])
   return (

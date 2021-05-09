@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import { auth } from '../firebase/config'
-import { CircleLoader } from 'react-spinners'
+// import { CircleLoader } from 'react-spinners'
 const AuthContext = createContext()
 
 const useAuth = () => {
@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
     <AuthContext.Provider value={Values}>
       {loading && (
         <div className='d-flex justify-content-center my-5'>
-          <CircleLoader color={'#F5A623'} size={100} />
+          {/* <CircleLoader color={'#F5A623'} size={100} /> */}
         </div>
       )}
       {!loading && children}
