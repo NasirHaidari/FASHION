@@ -6,12 +6,14 @@
 
 /* NAvbar */
 .navbar {
+ 
     width: 100%;
     height: auto;
     border-bottom: 1px solid lightblue;
     display: flex ;
     flex-direction: row;
     justify-content: space-between ;
+
 
 }
 
