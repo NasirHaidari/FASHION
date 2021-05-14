@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+
 export const CartReducer = (state, action) => {
   toast.configure()
   const { shoppingCart, totalPrice, totalQty } = state
@@ -39,7 +40,6 @@ export const CartReducer = (state, action) => {
           totalQty: updatedQty,
         }
       }
-      break
 
     case 'INC':
       product = action.cart
@@ -54,7 +54,6 @@ export const CartReducer = (state, action) => {
         totalPrice: updatedPrice,
         totalQty: updatedQty,
       }
-      break
 
     case 'DEC':
       product = action.cart
@@ -73,7 +72,6 @@ export const CartReducer = (state, action) => {
       } else {
         return state
       }
-      break
 
     case 'DELETE':
       const filtered = shoppingCart.filter(
@@ -87,7 +85,6 @@ export const CartReducer = (state, action) => {
         totalPrice: updatedPrice,
         totalQty: updatedQty,
       }
-      break
 
     case 'EMPTY':
       return {

@@ -10,6 +10,7 @@ import AuthProvider from './global/AuthContext'
 import CartContextProvider from './global/CartContext'
 import Cart from './components/Cart'
 import { Cashout } from './components/Cashout'
+
 //
 //
 function App() {
@@ -21,11 +22,11 @@ function App() {
             <Switch>
               <NavAndFooter>
                 <Route exact path='/' component={Home} />
-                <Route path='/addproducts' component={AddProducts} />
+                <Route exact path='/addproducts' component={AddProducts} />
                 <Route path='/signup' component={SignUp} />
-                <Route path='/login' component={Login} />
-                <Route path='/cart' component={Cart} />
-                <Route path='/cashout' component={Cashout} />
+                <Route exact path='/login' component={Login} />
+                <Route exact path='/cart' component={Cart} />
+                <Route exact path='/cashout' component={Cashout} />
               </NavAndFooter>
             </Switch>
           </CartContextProvider>
