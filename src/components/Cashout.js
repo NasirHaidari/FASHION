@@ -19,7 +19,10 @@ export const Cashout = (props) => {
   const [city, setCity] = useState('')
   const [error, setError] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
-  const [items, setItems] = useState([])
+
+  //Random Number
+  var Number = 45
+  var randomNumber = Math.floor(Math.random() * Number + 1)
 
   useEffect(() => {
     if (!currentUser) {
@@ -30,17 +33,19 @@ export const Cashout = (props) => {
   const cashoutHandle = (e) => {
     e.preventDefault()
     setEmail(currentUser.email)
-    console.log(name, email, phone, street, zip, totalQty, totalPrice)
+
     auth.onAuthStateChanged((user) => {
       if (user) {
         const Test2 = []
-        const date = new Date().toLocaleString()
+
+        // eslint-disable-next-line
         const productsFromShoppingCat = shoppingCart.map((item) => {
           Test2.push(item)
         })
 
         db.collection('orders')
-          .doc(user.uid)
+
+          .doc(user.uid + randomNumber)
           .set({
             Name: name,
             Email: email,
@@ -52,30 +57,6 @@ export const Cashout = (props) => {
             TotalPrice: totalPrice,
             order: Test2,
           })
-          // .then(() => {
-          //   const docRef = db.collection('orders').doc(user.id)
-
-          //   console.log(docRef)
-          //   shoppingCart.forEach((item) => {
-          //     docRef.push({
-          //       name: item.ProductName,
-          //       ArtNumber: item.ArticleNumber,
-          //       Price: item.ProductPrice,
-          //       totalProductPrice: item.TotalProductPrice,
-          //       totalPrice: totalPrice,
-          //     })
-          //   })
-          // })
-
-          // shoppingCart.forEach((item) => {
-          //   docRef.push({
-          //     name: item.ProductName,
-          //     ArtNumber: item.ArticleNumber,
-          //     Price: item.ProductPrice,
-          //     totalProductPrice: item.TotalProductPrice,
-          //     totalPrice: totalPrice,
-          //   })
-          // })
 
           .then(() => {
             setName('')

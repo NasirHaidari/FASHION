@@ -1,21 +1,16 @@
 import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../../images/android-chrome-512x512.png'
-import { useAuth } from '../../global/AuthContext'
-import { Button } from 'react-bootstrap'
+
 import { cart } from 'react-icons-kit/entypo/cart'
 import { Icon } from 'react-icons-kit'
 import { CartContext } from '../../global/CartContext'
-import { useHistory } from 'react-router-dom'
 
 function Navbar() {
-  const { currentUser, logout } = useAuth()
-  const history = useHistory()
-
   const { totalQty } = useContext(CartContext)
 
   return (
-    <div className='navbar-dark'>
+    <div className='navbar'>
       <div className='left'>
         <NavLink to='/'>
           <img src={logo} alt='logo' />

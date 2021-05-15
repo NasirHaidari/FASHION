@@ -46,7 +46,7 @@ const AdminNav = () => {
           )}
 
           {/* Show the Button if user is logged in */}
-          {currentUser.uid == process.env.REACT_APP_ADMIN_ID ? (
+          {currentUser.uid === process.env.REACT_APP_ADMIN_ID ? (
             <Button
               className='btn-warning m-2'
               onClick={() => {
