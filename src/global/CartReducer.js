@@ -31,7 +31,7 @@ export const CartReducer = (state, action) => {
       } else {
         product = action.product
         product['qty'] = 1
-        product['TotalProductPrice'] = product.ProductPrice * product.qty
+        product['TotalProductPrices'] = product.ProductPrice * product.qty
         updatedQty = totalQty + 1
         updatedPrice = totalPrice + product.ProductPrice
         return {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../../images/android-chrome-512x512.png'
 import { useAuth } from '../../global/AuthContext'
@@ -8,7 +8,6 @@ import { Icon } from 'react-icons-kit'
 import { CartContext } from '../../global/CartContext'
 
 function Navbar() {
-  const { loading, setLoading } = useState(false)
   const { currentUser, logout } = useAuth()
 
   const { totalQty } = useContext(CartContext)
@@ -28,14 +27,14 @@ function Navbar() {
             </span>
           </h5>
         )}
-        {currentUser && (
+        {
           <NavLink to='/cart'>
             <Icon icon={cart} size={30} style={{ color: 'orange' }} />
             <span className='font-weight-bolder text-danger mr-3'>
               {totalQty}{' '}
             </span>
           </NavLink>
-        )}
+        }
         {!currentUser && (
           <NavLink to='/signup' className='navLinks'>
             Sign Up

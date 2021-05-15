@@ -19,11 +19,15 @@ export const Cashout = (props) => {
   const [city, setCity] = useState('')
   const [error, setError] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
-  const Email = currentUser.email
+  const [items, setItems] = useState([])
+
   useEffect(() => {
     if (!currentUser) {
       history.push('/login')
     }
+    shoppingCart.map((item) => {
+      console.log(item)
+    })
   })
 
   const cashoutHandle = (e) => {
@@ -32,10 +36,10 @@ export const Cashout = (props) => {
     console.log(name, email, phone, street, zip, totalQty, totalPrice)
     auth.onAuthStateChanged((user) => {
       if (user) {
-        const date = new Date()
-        const time = date.getTime()
-        db.collection('customers' + user.uid)
-          .doc('_' + time)
+        const date = new Date().toLocaleString()
+
+        db.collection('orders')
+          .doc(user.uid + date)
           .set({
             Name: name,
             Email: email,

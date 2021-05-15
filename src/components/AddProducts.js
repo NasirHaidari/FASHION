@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { storage, db } from '../firebase/config'
 import logo from '../images/android-chrome-512x512.png'
+import { useHistory } from 'react-router-dom'
+import { useAuth } from '../global/AuthContext'
 
 const AddProducts = () => {
   const [articleNumber, SetArticleNumber] = useState('')
@@ -9,6 +11,16 @@ const AddProducts = () => {
   const [productDes, setProductDes] = useState('')
   const [productImage, setProductImage] = useState(null)
   const [error, setError] = useState('')
+  const { currentUser } = useAuth()
+  const history = useHistory()
+
+  useEffect(() => {
+    if (!currentUser) {
+      history.push('/login')
+    } else if (currentUser.uid !== process.env.REACT_APP_ADMIN_ID) {
+      history.push('/')
+    }
+  })
 
   const types = ['image/png', 'image/jpeg', 'image/webp']
 

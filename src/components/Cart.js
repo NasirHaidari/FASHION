@@ -10,15 +10,14 @@ import { ic_add } from 'react-icons-kit/md/ic_add'
 import { ic_remove } from 'react-icons-kit/md/ic_remove'
 import { iosTrashOutline } from 'react-icons-kit/ionicons/iosTrashOutline'
 const Cart = () => {
-  const { shoppingCart, dispatch, totalPrice, totalQty } = useContext(
-    CartContext
-  )
+  const { shoppingCart, dispatch, totalPrice, totalQty } =
+    useContext(CartContext)
   const { currentUser } = useAuth()
   const history = useHistory()
 
   useEffect(() => {
     if (!currentUser) {
-      history.push('/')
+      history.push('/login')
     }
   })
 
