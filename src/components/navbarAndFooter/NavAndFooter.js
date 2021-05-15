@@ -1,10 +1,14 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
-function NavAndFooter({ children }) {
+import AdminNav from './Admin'
+import { useAuth } from '../../global/AuthContext'
+const NavAndFooter = ({ children }) => {
+  const { currentUser } = useAuth()
+
   return (
     <div>
-      <Navbar />
+      {currentUser ? <AdminNav /> : <Navbar />}
       {children}
       <Footer />
     </div>

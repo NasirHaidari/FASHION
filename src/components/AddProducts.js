@@ -10,6 +10,7 @@ const AddProducts = () => {
   const [productPrice, setProductPrice] = useState('')
   const [productDes, setProductDes] = useState('')
   const [productImage, setProductImage] = useState(null)
+  const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
   const { currentUser } = useAuth()
   const history = useHistory()
@@ -37,6 +38,7 @@ const AddProducts = () => {
 
   const addProducts = (e) => {
     e.preventDefault()
+    setSuccess(false)
     console.log(productName, productImage, productPrice, productDes)
     const uploadTask = storage
       .ref(`product-images/${productImage.name}`)
@@ -63,6 +65,7 @@ const AddProducts = () => {
                 ProductImage: url,
               })
               .then(() => {
+                setSuccess(true)
                 setProductName('')
                 SetArticleNumber('')
                 setProductDes('')
@@ -82,6 +85,11 @@ const AddProducts = () => {
       <br />
       <img src={logo} className='logo' alt='logo' />
       <h2 className='text-center'>Add Products</h2>
+      {success && (
+        <h3 className='alert-info p-2 text-center'>
+          the Product uploaded successfully!
+        </h3>
+      )}
       <form
         action=''
         autoComplete='off'

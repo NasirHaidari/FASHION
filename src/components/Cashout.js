@@ -25,9 +25,6 @@ export const Cashout = (props) => {
     if (!currentUser) {
       history.push('/login')
     }
-    shoppingCart.map((item) => {
-      console.log(item)
-    })
   })
 
   const cashoutHandle = (e) => {
@@ -36,10 +33,14 @@ export const Cashout = (props) => {
     console.log(name, email, phone, street, zip, totalQty, totalPrice)
     auth.onAuthStateChanged((user) => {
       if (user) {
+        const Test2 = []
         const date = new Date().toLocaleString()
+        const productsFromShoppingCat = shoppingCart.map((item) => {
+          Test2.push(item)
+        })
 
         db.collection('orders')
-          .doc(user.uid + date)
+          .doc(user.uid)
           .set({
             Name: name,
             Email: email,
@@ -48,8 +49,34 @@ export const Cashout = (props) => {
             Zip: zip,
             City: city,
             Quantity: totalQty,
-            Payment: totalPrice,
+            TotalPrice: totalPrice,
+            order: Test2,
           })
+          // .then(() => {
+          //   const docRef = db.collection('orders').doc(user.id)
+
+          //   console.log(docRef)
+          //   shoppingCart.forEach((item) => {
+          //     docRef.push({
+          //       name: item.ProductName,
+          //       ArtNumber: item.ArticleNumber,
+          //       Price: item.ProductPrice,
+          //       totalProductPrice: item.TotalProductPrice,
+          //       totalPrice: totalPrice,
+          //     })
+          //   })
+          // })
+
+          // shoppingCart.forEach((item) => {
+          //   docRef.push({
+          //     name: item.ProductName,
+          //     ArtNumber: item.ArticleNumber,
+          //     Price: item.ProductPrice,
+          //     totalProductPrice: item.TotalProductPrice,
+          //     totalPrice: totalPrice,
+          //   })
+          // })
+
           .then(() => {
             setName('')
             setPhone('')
