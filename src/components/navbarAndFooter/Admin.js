@@ -13,7 +13,7 @@ const AdminNav = () => {
   const history = useHistory()
 
   const { totalQty } = useContext(CartContext)
-
+  const Admin = currentUser.uid === process.env.REACT_APP_ADMIN_ID
   return (
     <>
       <div className='navbar'>
@@ -31,14 +31,14 @@ const AdminNav = () => {
               </span>
             </h5>
           )}
-          {
+          {!Admin && (
             <NavLink to='/cart'>
               <Icon icon={cart} size={30} style={{ color: 'orange' }} />
               <span className='font-weight-bolder text-danger mr-3'>
                 {totalQty}{' '}
               </span>
             </NavLink>
-          }
+          )}
           {!currentUser && (
             <NavLink to='/signup' className='navLinks'>
               Sign Up

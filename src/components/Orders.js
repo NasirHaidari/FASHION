@@ -7,7 +7,7 @@ const Orders = () => {
   const orders = useOrders()
   const history = useHistory()
   const { currentUser } = useAuth()
-  console.log(orders)
+
   useEffect(() => {
     if (!currentUser) {
       history.push('/')
