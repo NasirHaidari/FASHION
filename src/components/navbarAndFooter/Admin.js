@@ -48,7 +48,7 @@ const AdminNav = () => {
           {/* Show the Button if user is logged in */}
           {currentUser.uid === process.env.REACT_APP_ADMIN_ID ? (
             <Button
-              className='btn-warning m-2'
+              className='btn-warning'
               onClick={() => {
                 history.push('/orders')
               }}>
@@ -57,8 +57,17 @@ const AdminNav = () => {
           ) : (
             ''
           )}
+          {Admin && (
+            <Button
+              className='btn btn-danger'
+              onClick={() => {
+                history.push('/addproducts')
+              }}>
+              AddProduct
+            </Button>
+          )}
           {currentUser ? (
-            <Button className='m-2' onClick={() => logout()}>
+            <Button className='btn' onClick={() => logout()}>
               Logout
             </Button>
           ) : (

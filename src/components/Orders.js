@@ -50,10 +50,6 @@ const Orders = () => {
                     <span className='font-weight-bolder'>City : </span>{' '}
                     {Order.City}
                   </div>
-                  <div className='alert-info'>
-                    <span className='font-weight-bolder'>City : </span>{' '}
-                    {Order.City}
-                  </div>
                 </div>
                 {Order.order.map((Article, index) => (
                   <div key={index} className='article p-2'>

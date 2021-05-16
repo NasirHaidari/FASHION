@@ -6,9 +6,6 @@ import { CartContext } from '../global/CartContext'
 import useProducts from '../hooks/useProducts'
 const Products = () => {
   const products = useProducts()
-  // const data = useContext(CartContext)
-
-  // console.log(data)
 
   const { dispatch } = useContext(CartContext)
 
@@ -40,6 +37,7 @@ const Products = () => {
                     </span>
                   </Card.Text>
                   <Card.Text className='text-danger bold'> </Card.Text>
+
                   <Button
                     variant='info
               '
