@@ -21,8 +21,8 @@ const Orders = () => {
       {orders &&
         orders.map((Order) => (
           <div className='content' key={Order.id}>
-            <div className='order card m-2 '>
-              <div className='alert-danger'>
+            <div className='order card m-4 p-2'>
+              <div className='alert-danger p-2'>
                 <span className='font-weight-bolder'>Order Number : </span> {''}
                 {Order.id}
                 <div>
@@ -53,6 +53,9 @@ const Orders = () => {
                 </div>
                 {Order.order.map((Article, index) => (
                   <div key={index} className='article p-2'>
+                    <div className='orderImage'>
+                      <img scr={Article.ProductImage} alt={Article.Name} />
+                    </div>
                     <p>
                       <span className='font-weight-bold'>Art. Number : </span>
                       {Article.ArticleNumber}
