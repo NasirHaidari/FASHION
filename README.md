@@ -3,9 +3,12 @@
 This project was is made witth React, React Hooks, Custom Hooks, useReducer context for global state, Bootstrap for the styling,.
 
 ## URL : https://fashion-swe.netlify.app/
+
+##
 username (Admin): test2@test.se
 password: testtest
 
+##
 username: (not Admin) test@test.se  
 password: testtest
 
