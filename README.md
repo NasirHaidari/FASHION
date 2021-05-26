@@ -1,6 +1,6 @@
 # Fashion
 
-This project was is made witth React, React Hooks, Custom Hooks, useReducer context for global state, Bootstrap for the styling,.
+This project was made with React, React Hooks, Custom Hooks, useReducer context for global state, Bootstrap for the styling,.
 In the backEnd i used FIrebase Auth, firestore and storage 
 
 ## URL : https://fashion-swe.netlify.app/
